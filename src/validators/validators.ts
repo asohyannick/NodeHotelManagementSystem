@@ -6,6 +6,12 @@ const validateRegisterUser = Yup.object().shape({
     password: Yup.string().required("Password must be provided").trim().min(6, "Password must be at least 6 characters long"),
     isAdmin: Yup.boolean().optional(),
 });
+const validateLoginUser = Yup.object().shape({
+    email: Yup.string().email("Email must be provided").required("Email must be provided").trim(),
+    password: Yup.string().required("Password must be provided").trim().min(6, "Password must be at least 6 characters long"),
+
+});
 export {
-    validateRegisterUser
+    validateRegisterUser,
+    validateLoginUser
 }
