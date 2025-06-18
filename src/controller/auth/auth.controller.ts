@@ -5,8 +5,10 @@ import { globalValidator } from '../../middleware/globalValidators/globalValidat
 import { validateLoginUser, validateRegisterUser } from '../../validators/validators';
 import { login } from '../../service/impl/auth/login/login.impl';
 import { fetchAllUsers } from '../../service/impl/auth/fetchAllUsers/fetchAllUsers.impl';
+import { fetchOneUser } from '../../service/impl/auth/fetchUser/fetchUser.impl';
 const router = express.Router();
 router.post('/register', authToken, globalValidator(validateRegisterUser), register);
 router.post('/login', authToken, globalValidator(validateLoginUser), login);
 router.get('/all-users', authToken, fetchAllUsers);
+router.get('/one-user/:id', authToken, fetchOneUser);
 export default router;
