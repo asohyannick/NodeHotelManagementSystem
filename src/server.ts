@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { connectedToDB } from './config/db/databaseConfig.db';
 import authRoute from './controller/auth/auth.controller';
+import profileRoute from './controller/profile/profile.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +23,9 @@ app.use(cors({
     origin: process.env.CLIENT as string || '*',
     credentials: true,
 }));
+// Routes
 app.use(`/api/${API_VERSION}/auth`, authRoute);
+app.use(`/api/${API_VERSION}/profile`, profileRoute);
 
 async function serve() {
     try {
