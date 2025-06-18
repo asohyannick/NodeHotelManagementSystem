@@ -6,9 +6,11 @@ import { validateProfileSetup, validateUpdatedProfileSetup } from '../../validat
 import { showProfiles } from '../../service/impl/profile/showProfiles/showProfiles.impl';
 import { showProfile } from '../../service/impl/profile/showProfile/showProfile.impl';
 import { editAndUpdateProfile } from '../../service/impl/profile/updateProfile/updateProfile.impl';
+import { deleteProfile } from '../../service/impl/profile/deleteProfile/deleteProfile.impl';
 const router = express.Router();
 router.post('/create-profile', authToken, globalValidator(validateProfileSetup), setProfile);
 router.get('/show-profiles', authToken, showProfiles);
 router.get('/show-profile/:id', authToken, showProfile);
 router.get('/update-profile/:id', authToken, globalValidator(validateUpdatedProfileSetup),  editAndUpdateProfile);
+router.delete('/delete-profile/:id', authToken, deleteProfile);
 export default router;
