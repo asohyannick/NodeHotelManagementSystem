@@ -8,9 +8,11 @@ import { fetchAllUsers } from '../../service/impl/auth/fetchAllUsers/fetchAllUse
 import { fetchOneUser } from '../../service/impl/auth/fetchUser/fetchUser.impl';
 import { editAndUpdateOneUser } from '../../service/impl/auth/updateUser/updateUser.impl';
 import { deleteOneUser } from '../../service/impl/auth/deleteAccount/deleteUser.impl';
+import { logout } from '../../service/impl/auth/logout/logout.impl';
 const router = express.Router();
 router.post('/register', authToken, globalValidator(validateRegisterUser), register);
 router.post('/login', authToken, globalValidator(validateLoginUser), login);
+router.post('/logout', authToken, logout);
 router.get('/all-users', authToken, fetchAllUsers);
 router.get('/one-user/:id', authToken, fetchOneUser);
 router.put('update-user/:id', authToken, globalValidator(validateUpdatedUser), editAndUpdateOneUser);
