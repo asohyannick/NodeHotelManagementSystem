@@ -7,6 +7,7 @@ import compression from 'compression';
 import { connectedToDB } from './config/db/databaseConfig.db';
 import authRoute from './controller/auth/auth.controller';
 import profileRoute from './controller/profile/profile.controller';
+import hotelRoute from './controller/hotel/hotel.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +27,7 @@ app.use(cors({
 // Routes
 app.use(`/api/${API_VERSION}/auth`, authRoute);
 app.use(`/api/${API_VERSION}/profile`, profileRoute);
+app.use(`/api/${API_VERSION}/hotel`, hotelRoute);
 
 async function serve() {
     try {
