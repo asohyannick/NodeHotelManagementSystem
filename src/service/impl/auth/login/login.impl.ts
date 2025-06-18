@@ -22,6 +22,12 @@ const login = async (req: Request, res: Response): Promise<Response> => {
         });
         user.refreshToken = refreshToken;
         await user.save();
+        res.cookie('auth', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV as string === 'production',
+            sameSite:'strict',
+            maxAge: 90000,
+        });
         return res.status(StatusCodes.OK).json({
             success: true,
             message: "User login is successful",
