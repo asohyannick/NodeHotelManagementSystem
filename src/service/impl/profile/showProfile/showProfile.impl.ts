@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import Profile from "../../../../model/profile/profile.model";
-const showProfiles = async (_req: Request, res: Response): Promise<Response> => {
+const showProfile = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const profiles = await Profile.find();          
+        const { id } = req.params;
+        const profile = await Profile.findById(id);  
+        if (!profile) {
+            return res.status(StatusCodes.NOT_FOUND).json({message: "Profile doesn't exist!"});
+        }        
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Profiles have been fetched successfully",
-            profiles
+            message: "Profile has been fetched successfully",
+            profile
         });
     } catch (error) {
         console.error(error);
@@ -16,5 +20,5 @@ const showProfiles = async (_req: Request, res: Response): Promise<Response> => 
 }
 
 export {
-    showProfiles
+    showProfile
 }
