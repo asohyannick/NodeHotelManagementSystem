@@ -1,10 +1,38 @@
+import 'dotenv/config';
 import express, { Application } from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import { connectedToDB } from './config/db/databaseConfig.db';
+import authRoute from './controller/auth/auth.controller';
 const app: Application = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.get('/hello', (req, res) => {
-    res.status(200).json({message: "hello world"});
-});
-app.listen(3000, () => {
-    console.log('Server is running on port 3000...');
-})
+app.use(express.urlencoded({ extended: true }));
+const APP_NAME: string = process.env.APP_NAME as string || 'NodeHotelManagementSystem';
+const API_VERSION: string | number = process.env.API_VERSION as string || 'v1';
+const APP_PORT: string | number = parseInt(process.env.APP_PORT as string || '8080', 10);
+const APP_HOST: string = process.env.APP_HOST as string || 'localhost';
+if (process.env.NODE_ENV as string === 'development') {
+    app.use(morgan('dev'));
+}
+app.use(helmet());
+app.use(compression());
+app.use(cors({
+    origin: process.env.CLIENT as string || '*',
+    credentials: true,
+}));
+app.use(`/api/${API_VERSION}/auth`, authRoute);
+
+async function serve() {
+    try {
+        await connectedToDB(),
+            app.listen(APP_PORT, () => {
+                console.log(`Server is running on ${APP_HOST}: port ${APP_PORT} on api/${API_VERSION} owned by ${APP_NAME}`)
+            });
+    } catch (error) {
+        console.error({ errors: error });
+    }
+}
+
+serve();
