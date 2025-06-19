@@ -6,9 +6,11 @@ import { validateBookedHotel, validateUpdatedBookedHotel } from '../../validator
 import { showBookedHotels } from '../../service/impl/hotel/showBookedHotels/showBookedHotels.impl';
 import { showBookedHotel } from '../../service/impl/hotel/showBookedHotel/showBookedHotel.impl';
 import { editAndUpdateBookedHotel } from '../../service/impl/hotel/updatedBookedHotel/updateBookedHotel.impl';
+import { deleteBookedHotel } from '../../service/impl/hotel/deleteBookedHotel/deleteBookedHotel.impl';
 const router = express.Router();
 router.post('/book-hotel', authToken, globalValidator(validateBookedHotel), bookHotel);
 router.get('/show-booked-hotels', authToken, showBookedHotels);
 router.get('/show-booked-hotel/:id', authToken, showBookedHotel);
 router.put('/update-booked-hotel/:id', authToken, globalValidator(validateUpdatedBookedHotel), editAndUpdateBookedHotel);
+router.delete('/delete-booked-hotel/:id', authToken, deleteBookedHotel);
 export default router;
