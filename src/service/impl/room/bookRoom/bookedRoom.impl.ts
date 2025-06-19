@@ -4,12 +4,10 @@ import Room from "../../../../model/room/room.model";
 import { BedTypeStatus, RoomTypeStatus } from "../../../interfac/room/room.interfac";
 const bookedRoom = async (req: Request, res: Response): Promise<Response> => {
     const {
-        roomType,
         price,
         capacity,
         features,
         availability,
-        bedType,
         size,
         floorNumber,
         view,
