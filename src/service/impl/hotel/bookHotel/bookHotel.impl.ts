@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Hotel from "../../../model/hotel/hotel.model";
+import Hotel from "../../../../model/hotel/hotel.model";
 import { StatusCodes } from "http-status-codes";
 const bookHotel = async (req: Request, res: Response): Promise<Response> => {
     const {

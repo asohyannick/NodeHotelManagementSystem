@@ -1,8 +1,10 @@
 import express from 'express';
 import { authToken } from '../../middleware/auth/auth.middleware';
-import { bookHotel } from '../../service/impl/hotel/hotel.impl';
+import { bookHotel } from '../../service/impl/hotel/bookHotel/bookHotel.impl';
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateBookedHotel } from '../../validators/validators';
+import { showBookedHotels } from '../../service/impl/hotel/showBookedHotels/showBookedHotels.impl';
 const router = express.Router();
 router.post('/book-hotel', authToken, globalValidator(validateBookedHotel), bookHotel);
+router.get('/show-booked-hotels', authToken, showBookedHotels);
 export default router;
