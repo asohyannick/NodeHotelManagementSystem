@@ -76,7 +76,38 @@ const validateBookedHotel = Yup.object().shape({
         facebook: Yup.string().optional().trim(),
         instagram: Yup.string().optional().trim(),
         twitter: Yup.string().optional().trim(),
+    }),
+});
 
+const validateUpdatedBookedHotel = Yup.object().shape({
+    name: Yup.string().required("Hotel name must be provided").trim(),
+    price: Yup.number().required('The price of booking a hotel must be provided').min(2).max(2000),
+    location: Yup.string().required("Hotel location must be provided").trim(),
+    rating: Yup.number().optional().integer(),
+    description: Yup.string().required("Hotel description must be provided").trim(),
+    email: Yup.string().email("Email address must be provided and must be unique").required("Email address must be provided and must be unique").trim(),
+    address: Yup.string().required("Hotel address must be provided").trim(),
+    website: Yup.string().required("Hotel website URL must be provided").trim(),
+    amenities: Yup.array().required("Hotel anemities must be provided").of(Yup.string().trim()),
+    checkInTime: Yup.string().required("Hotel checkInTime must be provided").trim(),
+    checkOutTime: Yup.string().required("Hotel checkoutTime must be provided").trim(),
+    totalRooms: Yup.number().required("The total number of hotel rooms must be provided").integer(),
+    availableRooms: Yup.number().required("The total number of available rooms must be provided").integer(),
+    city: Yup.string().required("Hotel city must be provided").trim(),
+    state: Yup.string().required("Hotel state must be provided").trim(),
+    country: Yup.string().required("Hotel country must be provided").trim(),
+    postalCode: Yup.string().required("Hotel postCode must be provided").trim(),
+    latitude: Yup.string().required("Hotel latitude must be provided").trim(),
+    longitude: Yup.string().required("Hotel longitude must be provided").trim(),
+    establishedYear: Yup.string().required("Hotel established year must be provided").trim(),
+    ownerName: Yup.string().required("Hotel manager's name must be provided").trim(),
+    staffCount: Yup.number().required("Hotel staffCount must be provided").integer(),
+    imageUrl: Yup.string().required("Hotel image URL must be provided").trim(),
+    policies: Yup.string().required("Hotel policies must be provided").trim(),
+    socialMediaLinks: Yup.object().shape({
+        facebook: Yup.string().optional().trim(),
+        instagram: Yup.string().optional().trim(),
+        twitter: Yup.string().optional().trim(),
     }),
 });
 export {
@@ -85,5 +116,6 @@ export {
     validateUpdatedUser,
     validateProfileSetup,
     validateUpdatedProfileSetup,
-    validateBookedHotel
+    validateBookedHotel,
+    validateUpdatedBookedHotel
 }
