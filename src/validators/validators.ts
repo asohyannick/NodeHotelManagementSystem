@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { MaritalStatus } from '../service/interfac/profile/profile.interfac';
+import { BedTypeStatus, RoomTypeStatus } from '../service/interfac/room/room.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -110,6 +111,22 @@ const validateUpdatedBookedHotel = Yup.object().shape({
         twitter: Yup.string().optional().trim(),
     }),
 });
+const validatebookedRoom = Yup.object().shape({
+    roomType: Yup.mixed().required('One valued must be provided').oneOf(Object.values(RoomTypeStatus)),
+    price: Yup.number().required('The price of booking a room must be provided').min(2).max(2000),
+    capacity: Yup.number().required('The capacity of booking a room must be provided').min(2).max(2000),
+    features: Yup.array().required('The features of booking a room must be provided').min(2).max(2000).of(Yup.string().trim()),
+    availability: Yup.boolean().optional().default(false),
+    bedType: Yup.mixed().required('One valued must be provided').oneOf(Object.values(BedTypeStatus)),
+    size: Yup.number().required('The size of booking a room must be provided').min(2).max(2000),
+    floorNumber: Yup.number().required('The floorNumber of booking a room must be provided').min(2).max(2000),
+    view: Yup.string().required('The view must be provided').trim(),
+    smokingAllowed:Yup.boolean().optional().default(false),
+    cleaningStatus:Yup.string().required('The cleaning status must be provided').trim(),
+    description: Yup.string().required('The description must be provided').trim(),
+    imageUrl: Yup.string().required('The image URL must be provided').trim(),
+    date: Yup.date().required('The date must be provided'),
+})
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -117,5 +134,6 @@ export {
     validateProfileSetup,
     validateUpdatedProfileSetup,
     validateBookedHotel,
-    validateUpdatedBookedHotel
+    validateUpdatedBookedHotel,
+    validatebookedRoom
 }

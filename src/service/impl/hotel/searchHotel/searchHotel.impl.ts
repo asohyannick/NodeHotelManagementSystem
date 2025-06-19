@@ -161,6 +161,10 @@ const searchHotel = async (req: Request, res: Response) => {
             }
         }
     }
+    //Filter by date if provided
+    if (date) {
+        filter.date = { $regex: date, $options: 'i'};
+    }
     try {
         // Set the sort options
         const sortOptions: any = {};
