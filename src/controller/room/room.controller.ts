@@ -6,9 +6,11 @@ import { validatebookedRoom, validateUpdatedBookedHotel } from '../../validators
 import { showBookedRooms } from '../../service/impl/room/showRooms/showRooms.impl';
 import { showBookedRoom } from '../../service/impl/room/showRoom/showRom.impl';
 import { updateBookedRoom } from '../../service/impl/room/updateRoom/updateRoom.impl';
+import { deleteBookedRoom } from '../../service/impl/room/deleteRoom/deleteRoom.impl';
 const router = express.Router();
 router.post('/book-a-new-room', authToken, globalValidator(validatebookedRoom), bookedRoom);
 router.get('/show-booked-rooms/:hotelId', authToken, showBookedRooms);
 router.get('/show-booked-room/:hotelId/:id', authToken, showBookedRoom);
-router.get('/update-booked-room/:hotelId/:id', authToken, globalValidator(validateUpdatedBookedHotel), updateBookedRoom);
+router.put('/update-booked-room/:hotelId/:id', authToken, globalValidator(validateUpdatedBookedHotel), updateBookedRoom);
+router.delete('/delete-booked-room/:hotelId/:id', authToken, deleteBookedRoom);
 export default router;
