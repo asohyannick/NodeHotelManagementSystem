@@ -4,7 +4,9 @@ import { createReview } from '../../service/impl/review/newReview/createReview.i
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateNewReview } from '../../validators/validators';
 import { showReviews } from '../../service/impl/review/showReviews/showReviews.impl';
+import { showReview } from '../../service/impl/review/showReview/showReview.impl';
 const router = express.Router();
 router.post('/create-review', authToken, globalValidator(validateNewReview), createReview);
 router.get('/show-reviews', authToken, showReviews);
+router.get('/show-review/:id', authToken, showReview);
 export default router;
