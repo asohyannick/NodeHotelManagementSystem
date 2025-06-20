@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { MaritalStatus } from '../service/interfac/profile/profile.interfac';
 import { BedTypeStatus, RoomTypeStatus } from '../service/interfac/room/room.interfac';
 import { Currency, PaymentStatus } from '../service/interfac/stripe/stripe.interfac';
+import { BookingStatus } from '../service/interfac/booking/booking.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -192,8 +193,20 @@ const validateUpdatedStripePayment = Yup.object().shape({
     currency: Yup.mixed().required('A valid currency must be provided').oneOf(Object.values(Currency)),
     status: Yup.mixed().optional().oneOf(Object.values(PaymentStatus)),
     lastUpdated: Yup.date().optional(),
-
 });
+
+const validateNewBooking = Yup.object().shape({
+    checkInDate: Yup.date().required('The check-in date must be provided'),
+    checkOutDate: Yup.date().required('The check-in date must be provided'),
+    totalPrice: Yup.number().required('The total price is required').integer(),
+    status: Yup.mixed().required('One value must be provided').oneOf(Object.values(BookingStatus)),
+    paymentStatus: Yup.mixed().required('One value must be provided').oneOf(Object.values(PaymentStatus)),
+    numberOfGuests: Yup.number().required('The number of guests must be provided').integer(),
+    specialRequests: Yup.array().required('The special request must be provided').of(Yup.string().trim()),
+    cancellationPolicy: Yup.string().required('The cancellation policy must be provided').trim(),
+    bookingReference: Yup.string().required('The booking reference must be provided').trim(),
+});
+
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -207,5 +220,6 @@ export {
     validateCustomerRegistration,
     validateUpdatedCustomerRegistration,
     validateStripePayment,
-    validateUpdatedStripePayment
+    validateUpdatedStripePayment,
+    validateNewBooking,
 }

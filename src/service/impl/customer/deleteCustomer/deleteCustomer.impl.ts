@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import Customer from "../../../../model/customer/customer.interfac";
+import Customer from "../../../../model/customer/customer.model";
 const deleteCustomer = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
