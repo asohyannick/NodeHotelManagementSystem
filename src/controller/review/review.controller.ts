@@ -6,9 +6,11 @@ import { validateNewReview, validateUpdatedReview } from '../../validators/valid
 import { showReviews } from '../../service/impl/review/showReviews/showReviews.impl';
 import { showReview } from '../../service/impl/review/showReview/showReview.impl';
 import { editeAndUpdateReview } from '../../service/impl/review/updateReview/updateReview.impl';
+import { deleteReview } from '../../service/impl/review/deleteReview/deleteReview.impl';
 const router = express.Router();
 router.post('/create-review', authToken, globalValidator(validateNewReview), createReview);
 router.get('/show-reviews', authToken, showReviews);
 router.get('/show-review/:id', authToken, showReview);
 router.put('/update-review/:id', authToken, globalValidator(validateUpdatedReview), editeAndUpdateReview);
+router.delete('/delete-review/:id', authToken, deleteReview);
 export default router;
