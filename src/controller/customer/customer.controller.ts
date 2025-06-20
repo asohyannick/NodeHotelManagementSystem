@@ -1,8 +1,10 @@
 import express from 'express';
 import { authToken } from '../../middleware/auth/auth.middleware';
-import { addANewCustomer } from '../../service/impl/customer/customer.impl';
+import { addANewCustomer } from '../../service/impl/customer/newCustomer/customer.impl';
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateCustomerRegistration } from '../../validators/validators';
+import { showCustomers } from '../../service/impl/customer/showCustomers/showCustomers.impl';
 const router = express.Router();
 router.post('/add-new-customer', authToken, globalValidator(validateCustomerRegistration), addANewCustomer);
+router.get('/show-customers', authToken, showCustomers);
 export default router;

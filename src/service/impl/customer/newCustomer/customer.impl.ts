@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import Customer from "../../../model/customer/customer.interfac";
+import Customer from "../../../../model/customer/customer.interfac";
 const addANewCustomer = async (req: Request, res: Response): Promise<Response> => {
     const {
         firstName,
