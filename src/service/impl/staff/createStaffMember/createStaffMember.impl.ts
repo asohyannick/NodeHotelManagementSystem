@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Staff from "../../../../model/staff/staff.model";
 import { StaffRoleStatus, StaffWorkStatus } from "../../../interfac/staff/staff.interfac";
 import { StatusCodes } from "http-status-codes";
-const createStaff = async (req: Request, res: Response): Promise<Response> => {
+const createStaffMember = async (req: Request, res: Response): Promise<Response> => {
     const {
         profilePicture,
         firstName,
@@ -38,5 +38,5 @@ const createStaff = async (req: Request, res: Response): Promise<Response> => {
 }
 
 export {
-    createStaff
+    createStaffMember
 }

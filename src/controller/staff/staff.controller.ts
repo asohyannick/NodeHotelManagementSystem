@@ -1,8 +1,10 @@
 import express from "express";
 import { authToken } from "../../middleware/auth/auth.middleware";
-import { createStaff } from "../../service/impl/staff/createStaff/createStaff.impl";
+import { createStaffMember } from "../../service/impl/staff/createStaffMember/createStaffMember.impl";
 import { globalValidator } from "../../middleware/globalValidators/globalValidator";
 import { validateStaffRegistration } from "../../validators/validators";
+import { showStaffMembers } from "../../service/impl/staff/showStaffMembers/showStaffMembers.impl";
 const router = express.Router();
-router.post('/create-staff', authToken, globalValidator(validateStaffRegistration), createStaff);
+router.post('/create-staff', authToken, globalValidator(validateStaffRegistration), createStaffMember);
+router.get('/show-staff-members', authToken, showStaffMembers);
 export default router;
