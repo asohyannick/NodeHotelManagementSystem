@@ -6,10 +6,11 @@ import { showStripePayment } from '../../service/impl/stripe/showPayment/showPay
 import { editAndUpdateStripePayment } from '../../service/impl/stripe/updatePayment/updatePayment.impl';
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateUpdatedStripePayment } from '../../validators/validators';
+import { deleteStripePayment } from '../../service/impl/stripe/deletePayment/deletePayment.impl';
 const router =  express.Router();
 router.post('/process-payment', authToken, newStripePayment);
 router.get('/show-payments', authToken, showStripePayments);
 router.get('/show-payment/:id', authToken, showStripePayment);
 router.put('/update-payment/:id', authToken, globalValidator(validateUpdatedStripePayment),  editAndUpdateStripePayment);
-
+router.delete('/delete-payment/:id', authToken, deleteStripePayment);
 export default router;
