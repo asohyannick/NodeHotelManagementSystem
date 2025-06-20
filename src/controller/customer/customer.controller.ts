@@ -6,9 +6,11 @@ import { validateCustomerRegistration, validateUpdatedCustomerRegistration } fro
 import { showCustomers } from '../../service/impl/customer/showCustomers/showCustomers.impl';
 import { showCustomer } from '../../service/impl/customer/showCustomer/showCustomer.impl';
 import { editAndUpdateCustomer } from '../../service/impl/customer/updateCustomer/updateCustomer.impl';
+import { deleteCustomer } from '../../service/impl/customer/deleteCustomer/deleteCustomer.impl';
 const router = express.Router();
 router.post('/add-new-customer', authToken, globalValidator(validateCustomerRegistration), addANewCustomer);
 router.get('/show-customers', authToken, showCustomers);
 router.get('/show-customer/:id', authToken, showCustomer);
 router.put('/update-customer/:id', authToken, globalValidator(validateUpdatedCustomerRegistration), editAndUpdateCustomer);
+router.delete('/delete-customer/:id', authToken, deleteCustomer);
 export default router;
