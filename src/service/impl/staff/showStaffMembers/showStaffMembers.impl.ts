@@ -4,11 +4,11 @@ import { StatusCodes } from "http-status-codes";
 const showStaffMembers = async (_req: Request, res: Response): Promise<Response> => {
     
     try {
-        const staffs = await Staff.find();
+        const staffMembers = await Staff.find();
         return res.status(StatusCodes.OK).json({
             success: true,
             message: "Staff members have been fetched successfully from the database!",
-            staffs
+            staffMembers,
         });
     } catch (error) {
         console.error(error);
