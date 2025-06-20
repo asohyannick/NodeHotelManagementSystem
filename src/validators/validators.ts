@@ -207,6 +207,18 @@ const validateNewBooking = Yup.object().shape({
     bookingReference: Yup.string().required('The booking reference must be provided').trim(),
 });
 
+const validateUpdatedBooking = Yup.object().shape({
+    checkInDate: Yup.date().required('The check-in date must be provided'),
+    checkOutDate: Yup.date().required('The check-in date must be provided'),
+    totalPrice: Yup.number().required('The total price is required').integer(),
+    status: Yup.mixed().required('One value must be provided').oneOf(Object.values(BookingStatus)),
+    paymentStatus: Yup.mixed().required('One value must be provided').oneOf(Object.values(PaymentStatus)),
+    numberOfGuests: Yup.number().required('The number of guests must be provided').integer(),
+    specialRequests: Yup.array().required('The special request must be provided').of(Yup.string().trim()),
+    cancellationPolicy: Yup.string().required('The cancellation policy must be provided').trim(),
+    bookingReference: Yup.string().required('The booking reference must be provided').trim(),
+});
+
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -222,4 +234,5 @@ export {
     validateStripePayment,
     validateUpdatedStripePayment,
     validateNewBooking,
+    validateUpdatedBooking
 }
