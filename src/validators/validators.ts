@@ -3,6 +3,7 @@ import { MaritalStatus } from '../service/interfac/profile/profile.interfac';
 import { BedTypeStatus, RoomTypeStatus } from '../service/interfac/room/room.interfac';
 import { Currency, PaymentStatus } from '../service/interfac/stripe/stripe.interfac';
 import { BookingStatus } from '../service/interfac/booking/booking.interfac';
+import { StaffRoleStatus, StaffWorkStatus } from '../service/interfac/staff/staff.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -234,6 +235,25 @@ const validateUpdatedReview = Yup.object().shape({
     response: Yup.string().required('The response must be provided').trim(),
     responseDate: Yup.date().required('The date value must be provided'),
 });
+
+const validateStaffRegistration = Yup.object().shape({
+    profilePicture: Yup.string().required('Image URL must be provided').trim(),
+    firstName: Yup.string().required("FirstName must be provided").trim().min(2),
+    lastName: Yup.string().required("LasttName must be provided").trim().min(2),
+    email: Yup.string().email("Email must be provided").required("Email must be provided").trim(),
+    phoneNumber: Yup.number().required('Phone number must be provided'),
+    role: Yup.mixed().optional().oneOf(Object.values(StaffRoleStatus)),
+    employmentDate: Yup.date().optional(),
+    status: Yup.mixed().optional().oneOf(Object.values(StaffWorkStatus)),
+    salary: Yup.number().required('The salary value must be provided').integer(),
+    address: Yup.object().shape({
+        street: Yup.string().required("Street name must be provided").trim().min(2),
+        city: Yup.string().required("City must be provided").trim().min(2),
+        state: Yup.string().required("State name must be provided").trim().min(2),
+        country: Yup.string().required("Country name must be provided").trim().min(2),
+        postalCode: Yup.string().required("Postal code must be provided").trim().min(2),
+    }),
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -252,4 +272,5 @@ export {
     validateUpdatedBooking,
     validateNewReview,
     validateUpdatedReview,
+    validateStaffRegistration,
 }
