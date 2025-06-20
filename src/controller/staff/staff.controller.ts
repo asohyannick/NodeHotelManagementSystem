@@ -5,9 +5,11 @@ import { globalValidator } from "../../middleware/globalValidators/globalValidat
 import { validateStaffRegistration } from "../../validators/validators";
 import { showStaffMembers } from "../../service/impl/staff/showStaffMembers/showStaffMembers.impl";
 import { showStaffMember } from "../../service/impl/staff/showStaffMember/showStaffMember.impl";
+import { editAndUpdateStaffMember } from "../../service/impl/staff/updateStaffMember/editAndUpdateStaffMember.impl";
 const router = express.Router();
 router.post('/create-staff', authToken, globalValidator(validateStaffRegistration), createStaffMember);
 router.get('/show-staff-members', authToken, showStaffMembers);
 router.get('/show-staff-member/:id', authToken, showStaffMember);
+router.put('/update-staff-member/:id', authToken, editAndUpdateStaffMember);
 export default router;
 
