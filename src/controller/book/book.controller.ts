@@ -4,7 +4,9 @@ import { newBooking } from '../../service/impl/booking/newBooking/newBooking.imp
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateNewBooking } from '../../validators/validators';
 import { showBookings } from '../../service/impl/booking/showBookings/showBookings.impl';
+import { showBooking } from '../../service/impl/booking/showBooking/showBooking.impl';
 const router = express.Router();
 router.post('/new-booking/', authToken, globalValidator(validateNewBooking), newBooking);
 router.get('/show-bookings', authToken, showBookings);
+router.get('/show-booking/:id', authToken, showBooking);
 export default router;
