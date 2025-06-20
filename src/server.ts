@@ -36,9 +36,8 @@ app.use(`/api/${API_VERSION}/hotel`, hotelRoute);
 app.use(`/api/${API_VERSION}/room`, roomRoute);
 app.use(`/api/${API_VERSION}/customer`, customerRoute);
 app.use(`/api/${API_VERSION}/booking`, bookingRoute);
+app.use(`/api/${API_VERSION}/payment`, stripePaymentRoute);
 app.use(`/api/${API_VERSION}/review`, reviewRoute);
-
-
 
 async function serve() {
     try {
