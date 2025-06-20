@@ -162,6 +162,23 @@ const validateCustomerRegistration = Yup.object().shape({
     }),
     profilePicture: Yup.string().required('Image URL must be provided').trim(),
     preferences: Yup.array().required('Preferences must be provided').of(Yup.string().trim()),
+});
+const validateUpdatedCustomerRegistration = Yup.object().shape({
+    firstName: Yup.string().required("FirstName must be provided").trim().min(2),
+    lastName: Yup.string().required("LasttName must be provided").trim().min(2),
+    email: Yup.string().email("Email must be provided").required("Email must be provided").trim(),
+    phoneNumber: Yup.number().required('Phone number must be provided'),
+    dateOfBirth: Yup.date().optional(),
+    loyaltyPoints: Yup.number().required('Loyalty point must be provided').integer(),
+    address: Yup.object().shape({
+        street: Yup.string().required("Street name must be provided").trim().min(2),
+        city: Yup.string().required("City must be provided").trim().min(2),
+        state: Yup.string().required("State name must be provided").trim().min(2),
+        country: Yup.string().required("Country name must be provided").trim().min(2),
+        postalCode: Yup.string().required("Postal code must be provided").trim().min(2),
+    }),
+    profilePicture: Yup.string().required('Image URL must be provided').trim(),
+    preferences: Yup.array().required('Preferences must be provided').of(Yup.string().trim()),
 
 })
 export {
@@ -174,5 +191,6 @@ export {
     validateUpdatedBookedHotel,
     validatebookedRoom,
     validateUpdatedBookedRoom,
-    validateCustomerRegistration
+    validateCustomerRegistration,
+    validateUpdatedCustomerRegistration
 }
