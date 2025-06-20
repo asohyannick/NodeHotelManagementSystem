@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { MaritalStatus } from '../service/interfac/profile/profile.interfac';
 import { BedTypeStatus, RoomTypeStatus } from '../service/interfac/room/room.interfac';
+import { Currency, PaymentStatus } from '../service/interfac/stripe/stripe.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -179,8 +180,14 @@ const validateUpdatedCustomerRegistration = Yup.object().shape({
     }),
     profilePicture: Yup.string().required('Image URL must be provided').trim(),
     preferences: Yup.array().required('Preferences must be provided').of(Yup.string().trim()),
-
 })
+const validateStripePayment = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer(),
+    currency: Yup.mixed().required('A valid currency must be provided').oneOf(Object.values(Currency)),
+    status: Yup.mixed().optional().oneOf(Object.values(PaymentStatus)),
+    lastUpdated: Yup.date().optional(),
+
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -192,5 +199,6 @@ export {
     validatebookedRoom,
     validateUpdatedBookedRoom,
     validateCustomerRegistration,
-    validateUpdatedCustomerRegistration
+    validateUpdatedCustomerRegistration,
+    validateStripePayment
 }

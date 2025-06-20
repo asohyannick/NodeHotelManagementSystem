@@ -10,6 +10,7 @@ import profileRoute from './controller/profile/profile.controller';
 import hotelRoute from './controller/hotel/hotel.controller';
 import roomRoute from './controller/room/room.controller';
 import customerRoute from './controller/customer/customer.controller';
+import stripePaymentRoute from './controller/stripe/payment.controller'
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +33,8 @@ app.use(`/api/${API_VERSION}/profile`, profileRoute);
 app.use(`/api/${API_VERSION}/hotel`, hotelRoute);
 app.use(`/api/${API_VERSION}/room`, roomRoute);
 app.use(`/api/${API_VERSION}/customer`, customerRoute);
+app.use(`/api/${API_VERSION}/payment`, stripePaymentRoute);
+
 
 async function serve() {
     try {
