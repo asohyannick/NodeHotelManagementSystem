@@ -226,6 +226,14 @@ const validateNewReview = Yup.object().shape({
     response: Yup.string().required('The response must be provided').trim(),
     responseDate: Yup.date().required('The date value must be provided'),
 });
+
+const validateUpdatedReview = Yup.object().shape({
+    rating: Yup.number().required('The rating value must be provided').integer(),
+    comment: Yup.string().required('The comment must be provided').trim(),
+    helpfulCount: Yup.number().required('The helpful count must be provided').integer(),
+    response: Yup.string().required('The response must be provided').trim(),
+    responseDate: Yup.date().required('The date value must be provided'),
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -242,5 +250,6 @@ export {
     validateUpdatedStripePayment,
     validateNewBooking,
     validateUpdatedBooking,
-    validateNewReview
+    validateNewReview,
+    validateUpdatedReview,
 }

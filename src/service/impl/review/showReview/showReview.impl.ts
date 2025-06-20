@@ -5,6 +5,9 @@ const showReview = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
         const review = await Review.findById(id);
+        if (!review) {
+            return res.status(StatusCodes.NOT_FOUND).json({mesage: "Review doesn't exist!"});
+        }
         return res.status(StatusCodes.OK).json({
             success: true,
             message: "Review has been fetched successfully from the database",
