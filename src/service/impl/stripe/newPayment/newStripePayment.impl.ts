@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_API_KEY as string, {
     apiVersion:'2025-05-28.basil',
 });
 
-const createPaymentIntent = async (req: Request, res: Response): Promise<Response> => {
+const newStripePayment = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { amount, currency } = req.body;
         const paymentIntent = await stripe.paymentIntents.create({
@@ -49,5 +49,5 @@ const createPaymentIntent = async (req: Request, res: Response): Promise<Respons
 };
 
 export {
-    createPaymentIntent,
+    newStripePayment
 };
