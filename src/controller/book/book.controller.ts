@@ -7,10 +7,12 @@ import { showBookings } from '../../service/impl/booking/showBookings/showBookin
 import { showBooking } from '../../service/impl/booking/showBooking/showBooking.impl';
 import { editAndUpdateBooking } from '../../service/impl/booking/updateBooking/updateBooking.impl';
 import { deleteBooking } from '../../service/impl/booking/deleteBooking/deleteBooking.impl';
+import { searchBooking } from '../../service/impl/booking/searchBooking/searchBooking.impl';
 const router = express.Router();
 router.post('/new-booking/', authToken, globalValidator(validateNewBooking), newBooking);
 router.get('/show-bookings', authToken, showBookings);
 router.get('/show-booking/:id', authToken, showBooking);
+router.get('/search-booking', authToken, searchBooking);
 router.put('/update-booking/:id', authToken, globalValidator(validateUpdatedBooking), editAndUpdateBooking);
 router.delete('/delete-booking/:id', authToken, deleteBooking);
 export default router;
