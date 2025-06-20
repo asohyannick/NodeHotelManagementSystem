@@ -186,6 +186,12 @@ const validateStripePayment = Yup.object().shape({
     currency: Yup.mixed().required('A valid currency must be provided').oneOf(Object.values(Currency)),
     status: Yup.mixed().optional().oneOf(Object.values(PaymentStatus)),
     lastUpdated: Yup.date().optional(),
+});
+const validateUpdatedStripePayment = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer(),
+    currency: Yup.mixed().required('A valid currency must be provided').oneOf(Object.values(Currency)),
+    status: Yup.mixed().optional().oneOf(Object.values(PaymentStatus)),
+    lastUpdated: Yup.date().optional(),
 
 });
 export {
@@ -200,5 +206,6 @@ export {
     validateUpdatedBookedRoom,
     validateCustomerRegistration,
     validateUpdatedCustomerRegistration,
-    validateStripePayment
+    validateStripePayment,
+    validateUpdatedStripePayment
 }

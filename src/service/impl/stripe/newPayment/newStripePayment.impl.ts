@@ -7,7 +7,6 @@ import { Currency, PaymentStatus } from '../../../interfac/stripe/stripe.interfa
 const stripe = new Stripe(process.env.STRIPE_SECRET_API_KEY as string, {
     apiVersion:'2025-05-28.basil',
 });
-
 const newStripePayment = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { amount, currency } = req.body;

@@ -3,8 +3,13 @@ import { authToken } from '../../middleware/auth/auth.middleware';
 import {  newStripePayment } from '../../service/impl/stripe/newPayment/newStripePayment.impl';
 import { showStripePayments } from '../../service/impl/stripe/showPayments/showPayments.impl';
 import { showStripePayment } from '../../service/impl/stripe/showPayment/showPayment.impl';
+import { editAndUpdateStripePayment } from '../../service/impl/stripe/updatePayment/updatePayment.impl';
+import { globalValidator } from '../../middleware/globalValidators/globalValidator';
+import { validateUpdatedStripePayment } from '../../validators/validators';
 const router =  express.Router();
 router.post('/process-payment', authToken, newStripePayment);
 router.get('/show-payments', authToken, showStripePayments);
 router.get('/show-payment/:id', authToken, showStripePayment);
+router.put('/update-payment/:id', authToken, globalValidator(validateUpdatedStripePayment),  editAndUpdateStripePayment);
+
 export default router;
