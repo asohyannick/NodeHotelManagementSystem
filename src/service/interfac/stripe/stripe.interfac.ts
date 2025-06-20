@@ -6,12 +6,12 @@ export  enum Currency  {
     AUD = 'aud',
     CAD = 'cad',
     INR = 'inr'
-
 }
 export enum PaymentStatus {
     PENDING = 'PENDING',
     SUCCESS = 'SUCCESS',
     REJECTED = 'REJECTED',
+    REFUNDED = 'REFUNDED',
 }
 export interface IStripeInterfac extends Document {
     paymentIntentId:string;
