@@ -6,9 +6,11 @@ import { validateBookedReservation, validateUpdatedBookedReservation } from '../
 import { showReservations } from '../../service/impl/reservation/showReservations/showReservations.impl';
 import { showReservation } from '../../service/impl/reservation/showReservation/showReservation.impl';
 import { updateReservation } from '../../service/impl/reservation/updateReservation/updateReservation.impl';
+import { deleteReservation } from '../../service/impl/reservation/deleteReservation/deleteReservation.impl';
 const router = express.Router();
 router.post('/new-reservation', authToken, globalValidator(validateBookedReservation), bookedReservation);
 router.get('/show-reservation', authToken, showReservations);
 router.get('/show-reservation/:id', authToken, showReservation);
-router.get('/delete-reservation/:id', authToken, globalValidator(validateUpdatedBookedReservation), updateReservation);
+router.put('/update-reservation/:id', authToken, globalValidator(validateUpdatedBookedReservation), updateReservation);
+router.delete('/delete-rservation/:id', authToken, deleteReservation);
 export default router;
