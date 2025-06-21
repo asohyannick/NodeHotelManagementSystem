@@ -14,7 +14,7 @@ import bookingRoute from './controller/book/book.controller';
 import stripePaymentRoute from './controller/stripe/payment.controller';
 import reviewRoute from './controller/review/review.controller';
 import staffRoute from './controller/staff/staff.controller';
-import amenityRoute from './controller/amenity/amenity.coontroller';
+import amenityRoute from './controller/amenity/amenity.controller';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
