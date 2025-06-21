@@ -15,7 +15,7 @@ const showAmenity = async (req: Request, res: Response): Promise<Response> => {
         });
     } catch (error) {
         console.error(error);
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Something went wromg!", error });
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Something went wrong!", error });
     }
 }
 

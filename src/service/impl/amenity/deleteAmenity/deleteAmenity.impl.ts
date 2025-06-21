@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import Amenity from "../../../../model/amenity/amenity.model";
-const showAmenities = async (_req: Request, res: Response): Promise<Response> => {   
+const deleteAmenity = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const amenities = await Amenity.find();
+        const { id } = req.params;
+        const amenity = await Amenity.findByIdAndDelete(id);
+        if (!amenity) {
+            return res.status(StatusCodes.NOT_FOUND).json({ message: "Amenity doesn't exist!" });
+        }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Amenity have been fetched successfully from the database",
-            amenities
+            message: "Amenity has been deleted successfully from the database",
+            amenity
         });
     } catch (error) {
         console.error(error);
@@ -16,5 +20,5 @@ const showAmenities = async (_req: Request, res: Response): Promise<Response> =>
 }
 
 export {
-    showAmenities
+    deleteAmenity
 }

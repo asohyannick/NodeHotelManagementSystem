@@ -6,9 +6,11 @@ import { validateAmenityRegistration, validateUpdatedAmenityRegistration } from 
 import { showAmenities } from '../../service/impl/amenity/showAmenities/showAmenities.impl';
 import { showAmenity } from '../../service/impl/amenity/showAmenity/showAmenity.impl';
 import { updateAmenity } from '../../service/impl/amenity/updateAmenity/updateAmenity.impl';
+import { deleteAmenity } from '../../service/impl/amenity/deleteAmenity/deleteAmenity.impl';
 const router = express.Router();
 router.post('/create-amenity', authToken, globalValidator(validateAmenityRegistration), createAmenity);
 router.get('/show-amenities', authToken, showAmenities);
 router.get('/show-amenity/:id', authToken, showAmenity);
 router.put('/update-amenity/:id', authToken, globalValidator(validateUpdatedAmenityRegistration), updateAmenity);
+router.delete('/delete-amenity/:id', authToken, deleteAmenity);
 export default router;
