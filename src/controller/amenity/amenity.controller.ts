@@ -4,7 +4,9 @@ import { createAmenity } from '../../service/impl/amenity/newAmenity/newAmenity.
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateAmenityRegistration } from '../../validators/validators';
 import { showAmenities } from '../../service/impl/amenity/showAmenities/showAmenities.impl';
+import { showAmenity } from '../../service/impl/amenity/showAmenity/showAmenity.impl';
 const router = express.Router();
 router.post('/create-amenity', authToken, globalValidator(validateAmenityRegistration), createAmenity);
 router.get('/show-amenities', authToken, showAmenities);
+router.get('/show-amenity/:id', authToken, showAmenity);
 export default router;
