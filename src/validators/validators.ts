@@ -300,9 +300,17 @@ const validateFAQ = Yup.object().shape({
     priority: Yup.number().required('The priority value must be provided').integer(),
     tags: Yup.array().required("The tags must be provided").of(Yup.string().trim()),
     date: Yup.date().optional(),
-
-
-})
+});
+const validateUpdatedFAQ = Yup.object().shape({
+    question: Yup.string().required("The question must be provided").trim(),
+    answer: Yup.string().required("The answer must be provided").trim(),
+    category: Yup.string().required("The category must be provided").trim(),
+    isActive: Yup.boolean().optional().default(false),
+    language: Yup.mixed().required('One Language must be provided').oneOf(Object.values(LanguageFAQStatus)),
+    priority: Yup.number().required('The priority value must be provided').integer(),
+    tags: Yup.array().required("The tags must be provided").of(Yup.string().trim()),
+    date: Yup.date().optional(),
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -325,5 +333,6 @@ export {
     validateUpdatedStaffRegistration,
     validateAmenityRegistration,
     validateUpdatedAmenityRegistration,
-    validateFAQ
+    validateFAQ,
+    validateUpdatedFAQ
 }
