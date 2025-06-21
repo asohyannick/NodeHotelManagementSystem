@@ -15,6 +15,7 @@ import stripePaymentRoute from './controller/stripe/payment.controller';
 import reviewRoute from './controller/review/review.controller';
 import staffRoute from './controller/staff/staff.controller';
 import amenityRoute from './controller/amenity/amenity.controller';
+import reservationRoute from './controller/reservation/reservation.controller';
 import frequentlyAskQuestionRoute from './controller/faq/faq.controller';
 const app: Application = express();
 app.use(express.json());
@@ -43,8 +44,8 @@ app.use(`/api/${API_VERSION}/payment`, stripePaymentRoute);
 app.use(`/api/${API_VERSION}/review`, reviewRoute);
 app.use(`/api/${API_VERSION}/staff`, staffRoute);
 app.use(`/api/${API_VERSION}/amenity`, amenityRoute);
+app.use(`/api/${API_VERSION}/reservation`, reservationRoute);
 app.use(`/api/${API_VERSION}/faq`, frequentlyAskQuestionRoute);
-
 
 async function serve() {
     try {

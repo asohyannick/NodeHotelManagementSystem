@@ -6,6 +6,7 @@ import { BookingStatus } from '../service/interfac/booking/booking.interfac';
 import { StaffRoleStatus, StaffWorkStatus } from '../service/interfac/staff/staff.interfac';
 import { AmenityTypeStatus } from '../service/interfac/amenity/amenity.interfac';
 import { LanguageFAQStatus } from '../service/interfac/faq/FAQ.interfac';
+import { ReservationStatus } from '../service/interfac/reservation/reservation.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -311,6 +312,24 @@ const validateUpdatedFAQ = Yup.object().shape({
     tags: Yup.array().required("The tags must be provided").of(Yup.string().trim()),
     date: Yup.date().optional(),
 });
+
+const validateBookedReservation = Yup.object().shape({
+    checkInDate: Yup.date().required("Reservation check-in-date must be provided"),
+    checkOutDate: Yup.date().required("Reservation check-out-date must be provided"),
+    numberOfGuests: Yup.number().required('The number of guests must be provided').integer(),
+    totalPrice: Yup.number().required('The total price is required').integer(),
+    status: Yup.mixed().required('One valued must be provided').oneOf(Object.values(ReservationStatus)),
+    specialRequests: Yup.array().required('The special request must be provided').of(Yup.string().trim()),
+});
+
+const validateUpdatedBookedReservation = Yup.object().shape({
+    checkInDate: Yup.date().required("Reservation check-in-date must be provided"),
+    checkOutDate: Yup.date().required("Reservation check-out-date must be provided"),
+    numberOfGuests: Yup.number().required('The number of guests must be provided').integer(),
+    totalPrice: Yup.number().required('The total price is required').integer(),
+    status: Yup.mixed().required('One valued must be provided').oneOf(Object.values(ReservationStatus)),
+    specialRequests: Yup.array().required('The special request must be provided').of(Yup.string().trim()),
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -334,5 +353,7 @@ export {
     validateAmenityRegistration,
     validateUpdatedAmenityRegistration,
     validateFAQ,
-    validateUpdatedFAQ
+    validateUpdatedFAQ,
+    validateBookedReservation,
+    validateUpdatedBookedReservation
 }
