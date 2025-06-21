@@ -17,6 +17,8 @@ import staffRoute from './controller/staff/staff.controller';
 import amenityRoute from './controller/amenity/amenity.controller';
 import reservationRoute from './controller/reservation/reservation.controller';
 import frequentlyAskQuestionRoute from './controller/faq/faq.controller';
+import { notFound } from './middleware/404/404.middle';
+import { backendError } from './middleware/500/500.middle';
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +48,8 @@ app.use(`/api/${API_VERSION}/staff`, staffRoute);
 app.use(`/api/${API_VERSION}/amenity`, amenityRoute);
 app.use(`/api/${API_VERSION}/reservation`, reservationRoute);
 app.use(`/api/${API_VERSION}/faq`, frequentlyAskQuestionRoute);
-
+app.use(notFound);
+app.use(backendError);
 async function serve() {
     try {
         await connectedToDB(),
