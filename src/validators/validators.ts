@@ -5,6 +5,7 @@ import { Currency, PaymentStatus } from '../service/interfac/stripe/stripe.inter
 import { BookingStatus } from '../service/interfac/booking/booking.interfac';
 import { StaffRoleStatus, StaffWorkStatus } from '../service/interfac/staff/staff.interfac';
 import { AmenityTypeStatus } from '../service/interfac/amenity/amenity.interfac';
+import { LanguageFAQStatus } from '../service/interfac/faq/FAQ.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -289,6 +290,19 @@ const validateUpdatedAmenityRegistration = Yup.object().shape({
     opeartingHours: Yup.string().required("Operatinng hours must be provided").trim(),
     imageURL: Yup.string().required("Image URL must be provided").trim(),
 });
+
+const validateFAQ = Yup.object().shape({
+    question: Yup.string().required("The question must be provided").trim(),
+    answer: Yup.string().required("The answer must be provided").trim(),
+    category: Yup.string().required("The category must be provided").trim(),
+    isActive: Yup.boolean().optional().default(false),
+    language: Yup.mixed().required('One Language must be provided').oneOf(Object.values(LanguageFAQStatus)),
+    priority: Yup.number().required('The priority value must be provided').integer(),
+    tags: Yup.array().required("The tags must be provided").of(Yup.string().trim()),
+    date: Yup.date().optional(),
+
+
+})
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -310,5 +324,6 @@ export {
     validateStaffRegistration,
     validateUpdatedStaffRegistration,
     validateAmenityRegistration,
-    validateUpdatedAmenityRegistration
+    validateUpdatedAmenityRegistration,
+    validateFAQ
 }
