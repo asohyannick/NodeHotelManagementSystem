@@ -6,7 +6,7 @@ const showAmenity = async (req: Request, res: Response): Promise<Response> => {
         const { id } = req.params;
         const amenity = await Amenity.findById(id);
         if (!amenity) {
-            return res.status(StatusCodes.NOT_FOUND).json({ message: "Aemnity doesn't exist!" });
+            return res.status(StatusCodes.NOT_FOUND).json({ message: "Amenity doesn't exist!" });
         }
         return res.status(StatusCodes.OK).json({
             success: true,

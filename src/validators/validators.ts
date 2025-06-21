@@ -281,6 +281,14 @@ const validateAmenityRegistration = Yup.object().shape({
     opeartingHours: Yup.string().required("Operatinng hours must be provided").trim(),
     imageURL: Yup.string().required("Image URL must be provided").trim(),
 });
+
+const validateUpdatedAmenityRegistration = Yup.object().shape({
+    type: Yup.mixed().optional().oneOf(Object.values(AmenityTypeStatus)),
+    description: Yup.string().required("Amenity description must be provided").trim(),
+    availability: Yup.boolean().required('Amenity availability must be provided').default(false),
+    opeartingHours: Yup.string().required("Operatinng hours must be provided").trim(),
+    imageURL: Yup.string().required("Image URL must be provided").trim(),
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -301,5 +309,6 @@ export {
     validateUpdatedReview,
     validateStaffRegistration,
     validateUpdatedStaffRegistration,
-    validateAmenityRegistration
+    validateAmenityRegistration,
+    validateUpdatedAmenityRegistration
 }
