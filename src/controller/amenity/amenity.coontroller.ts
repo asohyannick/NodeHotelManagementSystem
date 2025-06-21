@@ -1,0 +1,8 @@
+import express from 'express';
+import { authToken } from '../../middleware/auth/auth.middleware';
+import { createAmenity } from '../../service/impl/amenity/newAmenity/newAmenity.impl';
+import { globalValidator } from '../../middleware/globalValidators/globalValidator';
+import { validateAmenityRegistration } from '../../validators/validators';
+const router = express.Router();
+router.post('/create-amenity', authToken, globalValidator(validateAmenityRegistration), createAmenity);
+export default router;

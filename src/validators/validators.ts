@@ -4,6 +4,7 @@ import { BedTypeStatus, RoomTypeStatus } from '../service/interfac/room/room.int
 import { Currency, PaymentStatus } from '../service/interfac/stripe/stripe.interfac';
 import { BookingStatus } from '../service/interfac/booking/booking.interfac';
 import { StaffRoleStatus, StaffWorkStatus } from '../service/interfac/staff/staff.interfac';
+import { AmenityTypeStatus } from '../service/interfac/amenity/amenity.interfac';
 const validateRegisterUser = Yup.object().shape({
     firstName: Yup.string().required("FirstName must be provided").trim().min(2),
     lastName: Yup.string().required("LasttName must be provided").trim().min(2),
@@ -272,6 +273,14 @@ const validateUpdatedStaffRegistration = Yup.object().shape({
         postalCode: Yup.string().required("Postal code must be provided").trim().min(2),
     }),
 });
+
+const validateAmenityRegistration = Yup.object().shape({
+    type: Yup.mixed().optional().oneOf(Object.values(AmenityTypeStatus)),
+    description: Yup.string().required("Amenity description must be provided").trim(),
+    availability: Yup.boolean().required('Amenity availability must be provided').default(false),
+    opeartingHours: Yup.string().required("Operatinng hours must be provided").trim(),
+    imageURL: Yup.string().required("Image URL must be provided").trim(),
+});
 export {
     validateRegisterUser,
     validateLoginUser,
@@ -291,5 +300,6 @@ export {
     validateNewReview,
     validateUpdatedReview,
     validateStaffRegistration,
-    validateUpdatedStaffRegistration
+    validateUpdatedStaffRegistration,
+    validateAmenityRegistration
 }
