@@ -3,6 +3,8 @@ import { authToken } from '../../middleware/auth/auth.middleware';
 import { bookedReservation } from '../../service/impl/reservation/newReservation/newReservation.impl';
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateBookedReservation } from '../../validators/validators';
+import { showReservations } from '../../service/impl/reservation/showReservations/showReservations.impl';
 const router = express.Router();
-router.post('/new-reservation', authToken, globalValidator(validateBookedReservation), bookedReservation)
+router.post('/new-reservation', authToken, globalValidator(validateBookedReservation), bookedReservation);
+router.get('/show-reservation', authToken, showReservations);
 export default router;
