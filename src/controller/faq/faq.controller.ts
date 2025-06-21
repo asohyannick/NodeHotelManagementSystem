@@ -3,6 +3,8 @@ import { authToken } from '../../middleware/auth/auth.middleware';
 import { sendFAQ } from '../../service/impl/faq/sendFAQ/sendFAQ.impl';
 import { globalValidator } from '../../middleware/globalValidators/globalValidator';
 import { validateFAQ } from '../../validators/validators';
+import { showFAQs } from '../../service/impl/faq/showFAQs/showFAQs.impl';
 const router = express.Router();
 router.post('/send-faq', authToken, globalValidator(validateFAQ), sendFAQ);
+router.get('/show-faqs', authToken, showFAQs);
 export default router;
