@@ -5,8 +5,10 @@ import { globalValidator } from '../../middleware/globalValidators/globalValidat
 import { validateFAQ } from '../../validators/validators';
 import { showFAQs } from '../../service/impl/faq/showFAQs/showFAQs.impl';
 import { showFAQ } from '../../service/impl/faq/showFAQ/showFAQ.impl';
+import { updateFAQ } from '../../service/impl/faq/updateFAQ/updateFAQ.impl';
 const router = express.Router();
-router.post('/send-faq', authToken, globalValidator(validateFAQ), sendFAQ);
-router.get('/show-faqs', authToken, showFAQs);
-router.get('/show-faq/:id', authToken, showFAQ);
+router.post('/send-question', authToken, globalValidator(validateFAQ), sendFAQ);
+router.get('/show-questions', authToken, showFAQs);
+router.get('/show-question/:id', authToken, showFAQ);
+router.put('/update-question/:id', authToken, updateFAQ);
 export default router;
