@@ -356,4 +356,4 @@ export {
     validateUpdatedFAQ,
     validateBookedReservation,
     validateUpdatedBookedReservation
-}
+};
